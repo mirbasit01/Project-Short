@@ -1,30 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Spin Wheel App With Javascript</title>
-</head>
-<body>
-    <div class="wrapper">
-        <div class="container">
-            <canvas id="wheel"></canvas>
-            <button id="spin-btn">Spin</button>
-            <img src="arrow-24848_1280.png" alt="spinner-arrow" class="spinner-arrow">
-        </div>
-        <div id="final-value">
-            <p>
-                Click on The Spin Button To Start 
-            </p>
-        </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="todo.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="header"></div>
+      <div id="newtask">
+        <input type="text" placeholder="Task to be done.." />
+        <button id="push">Add</button>
+      </div>
+      <div id="Tasks"></div>
     </div>
- 
-     <!-- chart js -->
-     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.min.js"></script> -->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
-     <!-- chart JS plugin for displaying text over chart  -->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.2.0/chartjs-plugin-datalabels.min.js"></script>
-    <script src="script.js"></script>
-</body>
+
+    <script src="todo.js"></script>
+  </body>
 </html>
