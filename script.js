@@ -1,157 +1,108 @@
-// const months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+const wheel = document.getElementById("wheel");
+const spinBtn = document.getElementById("spin-btn");
+const finalvalue = document.getElementById("final-value");
+// Object that stores values of minimum and maximum angle for a value
+const rotationValues = [
+  { minDegree: 0, maxDegree: 30, value: 2 },
+  { minDegree: 31, maxDegree: 90, value: 1 },
+  { minDegree: 91, maxDegree: 150, value: 6 },
+  { minDegree: 151, maxDegree: 210, value: 5 },
+  { minDegree: 221, maxDegree: 270, value: 4 },
+  { minDegree: 271, maxDegree: 330, value: 3 },
+  { minDegree: 331, maxDegree: 360, value: 2 },
+];
 
-// function ageCalculate() {
-//   let today = new Date();
-//   let inputDate = new Date(document.getElementById("data-input").value);
-//   let birthMonth, brithDate, brithYear;
+// Size of each piece
+const data = [16, 16, 16, 16, 16, 16];
+// Background color for each piece
+var pieColors = [
+  "#8b35bc",
+  "#b163da",
+  "#8b35bc",
+  "#b163da",
+  "#8b35bc",
+  "#b163da",
+];
 
-//   let brithDetails = {
-//     data: inputDate.getDate(),
-//     month: inputDate.getMonth() + 1,
-//     year: inputDate.getFullYear(),
-//   };
-//   let currentYera = today.getFullYear();
-//   let currentMonth = today.getMonth() + 1;
-//   let currentDate = today.getDate();
-
-//   LeapChecker(currentYera);
-
-//   if (
-//     brithDetails.year > currentYera ||
-//     (brithDetails.month > currentMonth && brithDetails.year == currentYera) ||
-//     (brithDetails.data > currentDate &&
-//       brithDetails.month == currentMonth &&
-//       brithDetails.year == currentYera)
-//   )
-//     alert("Not Born Yet");
-//     displayResult("-","-","-")
-//   return;
-// }
-// brithYear = currentYera - brithDetails.year;
-
-// if(currentMonth >= brithDetails.month){
-//     birthMonth =  currentMonth - brithDetails.month;
-// } else{
-//     brithYear--;
-//     birthMonth  = 12 + currentMonth -brithDetails.month
-// }
-// if(
-//     currentDate >= brithDetails.data){
-//         brithDate = currentDate - brithDetails.data;
-
-//     }
-//     else{
-//         birthMonth--;
-//         let days  = months[currentMonth - 2];
-//         brithDate = days + currentDate - brithDetails.data;
-//         if(birthMonth < 0){
-//             birthMonth = 11;
-//             brithYear--;
-
-//         }
-//     }
-//     displayResult(brithDate,birthMonth,brithYear);
-//     // console.log(brithYear, birthMonth, brithDate);
-//     function displayResult(bDate,bmonth,bYear){
-//       document.getElementById("years").textContent = bYear;
-//       document.getElementById("months").textContent = bmonth;
-//       document.getElementById("days").textContent = bDate;
-
-//     }
-
-
-
-// function LeapChecker(year) {
-//   if (year % 4 == 0 || (year % 100 == 0 && year % 400 == 0)) {
-//     months[1] = 29;
-//   } else {
-//     months[1] = 28;
-//   }
-//   console.log(year, months[1]);
-// }
-
-// Array representing the number of days in each month
-const months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-
-// Function to calculate the age based on the input date
-function ageCalculate() {
-  // Get the current date
-  let today = new Date();
-  // Get the input date from the user
-  let inputDate = new Date(document.getElementById("data-input").value);
-  let birthMonth, birthDate, birthYear;
-
-  // Object to store the birth date details
-  let birthDetails = {
-    date: inputDate.getDate(),
-    month: inputDate.getMonth() + 1,
-    year: inputDate.getFullYear(),
-  };
-
-  // Get the current year, month, and date
-  let currentYear = today.getFullYear();
-  let currentMonth = today.getMonth() + 1;
-  let currentDate = today.getDate();
-
-  // Check if the current year is a leap year
-  LeapChecker(currentYear);
-
-  // Check if the birth date is valid (i.e., not in the future)
-  if (
-    birthDetails.year > currentYear ||
-    (birthDetails.month > currentMonth && birthDetails.year == currentYear) ||
-    (birthDetails.date > currentDate &&
-      birthDetails.month == currentMonth &&
-      birthDetails.year == currentYear)
-  ) {
-    // If the birth date is invalid, show an alert and return
-    alert("Not Born Yet");
-    displayResult("-", "-", "-");
-    return;
-  }
-
-  // Calculate the birth year
-  birthYear = currentYear - birthDetails.year;
-
-  // Calculate the birth month
-  if (currentMonth >= birthDetails.month) {
-    birthMonth = currentMonth - birthDetails.month;
-  } else {
-    birthYear--; // Decrease the birth year if current month is less than birth month
-    birthMonth = 12 + currentMonth - birthDetails.month;
-  }
-
-  // Calculate the birth date
-  if (currentDate >= birthDetails.date) {
-    birthDate = currentDate - birthDetails.date;
-  } else {
-    birthMonth--; // Decrease the birth month if current date is less than birth date
-    let days = months[currentMonth - 2]; // Get the days in the previous month
-    birthDate = days + currentDate - birthDetails.date;
-    if (birthMonth < 0) {
-      birthMonth = 11; // Reset to December if birth month goes negative
-      birthYear--; // Decrease the birth year
+// Create chart
+let myChart = new Chart(wheel, {
+  // Plugin for displaying text on pie chart
+  plugins: [ChartDataLabels],
+  // Chart type: pie
+  type: "pie",
+  data: {
+    // Labels (values which are to be displayed on the chart)
+    labels: [1, 2, 3, 4, 5, 6],
+    // Settings for dataset/pie
+    datasets: [
+      {
+        backgroundColor: pieColors,
+        data: data,
+      },
+    ],
+  },
+  options: {
+    // Responsive chart
+    responsive: true,
+    animation: { duration: 0 },
+    plugins: {
+      // Hide tooltip and legend
+      tooltip: false,
+      legend: {
+        display: false,
+      },
+      // Display labels inside pie chart
+      datalabels: {
+        color: "#ffffff",
+        formatter: (_, context) => context.chart.data.labels[context.dataIndex],
+        font: { size: 24 },
+      },
+    },
+  },
+});
+// Display value based on the  randomangel
+const valueGenerator = (angleValue) => {
+  for (let i of rotationValues) {
+    //  if the angleValue is between min and mx then display it
+    if (angleValue >= i.minDegree && angleValue <= i.maxDegree) {
+      finalvalue.innerHTML = `<h4> Value : ${i.value}</h4>`;
+      spinBtn.disabled = false;
+      break;
     }
   }
+};
 
-  // Display the calculated age
-  displayResult(birthDate, birthMonth, birthYear);
-}
+// spinner count
+let count = 0;
+// 100 rotations for  animation and last  rotation for result
+let resultValue = 101;
+// start spinning
+spinBtn.addEventListener("click", () => {
+  spinBtn.disabled = true;
+  // Empty final value
+  finalvalue.innerHTML = `<h4> Good Luck! </h4>`;
+  // Generate random degress to stop  at
+  let randomDegree = Math.floor(Math.random() * (355 - 0 + 1) + 0);
+  //    Interval for rotation animation
+  let rotationInterval = window.setInterval(() => {
+    // set rotation for piechert
+    // Initially to make the piechert   rotate faster we set
+    //  resultValue to 101 so it rotates 101 degress at a time and
+    //  this reducess by i with every count. Eventually on last rotation we rotate by 1 degree at a time
 
-// Function to display the result on the web page
-function displayResult(bDate, bMonth, bYear) {
-  document.getElementById("years").textContent = bYear;
-  document.getElementById("months").textContent = bMonth;
-  document.getElementById("days").textContent = bDate;
-}
-
-// Function to check if a given year is a leap year
-function LeapChecker(year) {
-  if (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)) {
-    months[1] = 29; // Set February to 29 days if it's a leap year
-  } else {
-    months[1] = 28; // Set February to 28 days if it's not a leap year
-  }
-  console.log(year, months[1]);
-}
-  
+    myChart.options.rotation = myChart.options.rotation + resultValue;
+    //Update chart with new value;
+    myChart.update();
+    //If rotation>360 reset it back to 0
+    if (myChart.options.rotation >= 360) {
+      count += 1;
+      resultValue -= 5;
+      myChart.options.rotation = 0;
+    } else if (count > 15 && myChart.options.rotation == randomDegree) {
+      valueGenerator(randomDegree);
+      clearInterval(rotationInterval);
+      count = 0;
+      resultValue = 101;
+    }
+  }, 10);
+});
