@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+
+}
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: url(bg.jpg) #030728 no-repeat center;
+}
+.slider{
+    overflow: hidden;
+    max-width: 1200px;
+    margin: 0 70px 55px;
+}
+.card-list .card-item{
+    color: white;
+    background-color: rgba(255, 255, 255, 0.2);
+    /* width: 400px; */
+    user-select: none;
+    padding: 35px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    backdrop-filter: blur(30px);
+}
+.card-list .card-item .user-images{
+    width: 150px;
+    height: 150px;
+ 
+    border-radius: 50%; 
+    margin-bottom: 40px;
+    border: 3px solid #ffffff;
+    padding: 4px;
+}
+.card-list .card-item .user-profession{
+    font-size: 1.15rem;
+    color: #e3e3e3;
+    font-weight: 500;
+    margin: 14px 0 40px;
+
+} 
+
+.card-list .card-item .massage-button{
+    font-size: 1.25rem;
+    padding: 10px 35px;
+    color: #030728;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    background-color: #e3e3e3;
+    border:  1px solid transparent;
+    transition: 0.2s ease;
+}
+.card-list .card-item .massage-button:hover{
+    background-color: rgba(255, 255, 255, 0.1);
+    border:  1px solid #fff;
+    color: #fff;
+}
+.slider .swiper-pagination-bullet{
+    background-color: #ffffff; 
+    width: 15px;
+    height: 15px;
+}
+
+.slider .swiper-slide-button{
+    color: #ffffff;
+    margin-top: -50PX;
+    transition:  0.2S ease;
+}
+.slider .swiper-slide-button:hover{
+    color: #4658FF;
+     
+
+}
+
+@media (max-width: 768px){
+    .slider{
+        margin: 0 10px 40px;
+    }
+    
+.slider .swiper-slide-button{
+    display: none;
+}
+}
